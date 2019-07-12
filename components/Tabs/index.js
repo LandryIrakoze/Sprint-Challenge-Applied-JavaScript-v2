@@ -16,7 +16,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
         })
     })
     .catch(response => {
-        console.log('its broken, try again later');
+        console.log('its broken, try again later', response);
     })
 
 const TabComponent = (data) => {
