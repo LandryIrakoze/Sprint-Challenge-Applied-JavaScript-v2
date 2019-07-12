@@ -17,3 +17,58 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+const Carousel = () => {
+  const carouselContainer = document.createElement('div');
+  const leftButton = document.createElement('div');
+  const rightButton = document.createElement('div');
+  const img1 = document.createElement('img');
+  const img2 = document.createElement('img');
+  const img3 = document.createElement('img');
+  const img4 = document.createElement('img');
+  
+  carouselContainer.classList.add('carousel');
+  leftButton.classList.add('left-button');
+  rightButton.classList.add('right-button');
+
+  leftButton.textContent = ' < ';
+  rightButton.textContent = ' > ';
+
+  img1.src = './assets/carousel/mountains.jpeg';
+  img2.src = './assets/carousel/computer.jpeg';
+  img3.src = './assets/carousel/trees.jpeg';
+  img4.src = './assets/carousel/turntable.jpeg';
+
+  carouselContainer.appendChild(leftButton);
+  carouselContainer.appendChild(img1);
+  carouselContainer.appendChild(img2);
+  carouselContainer.appendChild(img3);
+  carouselContainer.appendChild(img4);
+  carouselContainer.appendChild(rightButton);
+
+  let images = [img1, img2, img3, img4];
+
+  images[0].style.display = 'block';
+  
+  leftButton.addEventListener('click', () => slideLeft());
+  rightButton.addEventListener('click', () => slideRight());
+
+  const slideLeft = () => {
+    images.forEach(item => item.style.display = 'none');
+    images.push(images[0]);
+    images.shift();
+    images[0].style.display = 'block';
+  };
+  const slideRight = () => {
+    images.forEach(item => item.style.display = 'none');
+    images.unshift(images[images.length -1]);
+    images.pop();
+    images[0].style.display = 'block';
+  };
+  
+  return carouselContainer;
+}
+
+const carousel = document.querySelector('.carousel-container');
+
+carousel.appendChild(Carousel());
