@@ -23,6 +23,6 @@ const TabComponent = (data) => {
     const tab = document.createElement('div');
     tab.classList.add('tab');
     tab.textContent = (data)
-
+    tab.setAttribute('data-tab', data);
     return tab;
 }

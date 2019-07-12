@@ -23,25 +23,27 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
         const articles = data.data.articles;
         const cardsContainer = document.querySelector('.cards-container');
         const articleArray = Object.values(articles);
-        articleArray.forEach(item => {
-            const category = item;
-            category.forEach(topic => {
-                cardsContainer.appendChild(Cards(topic))
+        const articleCategory = Object.keys(articles);
+        console.log(articleCategory);
+        articleArray.forEach((item, index) => {
+            item.forEach(topic => {
+                cardsContainer.appendChild(Cards(topic, articleCategory[index]))
             })
         })
-        
     })
     .catch(response => {
         console.log('its broken, try again later', response);
     })
 
-const Cards = (data) => {
+const Cards = (data, category) => {
     const card = document.createElement('div');
     const headline = document.createElement('div');
     const authorContainer = document.createElement('div');
     const imgContainer = document.createElement('div');
     const img = document.createElement('img');
     const authorName = document.createElement('span');
+
+    card.setAttribute('data-tab', category);
 
     card.classList.add('card');
     headline.classList.add('headline');
